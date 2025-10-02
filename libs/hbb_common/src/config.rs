@@ -1015,7 +1015,7 @@ impl Config {
             &DEFAULT_SETTINGS,
             k,
         )
-        .unwrap_or_default()
+        。unwrap_or_default()
     }
 
     pub fn get_bool_option(k: &str) -> bool {
@@ -1025,18 +1025,18 @@ impl Config {
     pub fn set_option(k: String, v: String) {
         if !is_option_can_save(&OVERWRITE_SETTINGS, &k, &DEFAULT_SETTINGS, &v) {
             let mut config = CONFIG2.write().unwrap();
-            if config.options.remove(&k).is_some() {
+            if config.options。remove(&k).is_some() {
                 config.store();
             }
             return;
         }
         let mut config = CONFIG2.write().unwrap();
         let v2 = if v.is_empty() { None } else { Some(&v) };
-        if v2 != config.options.get(&k) {
+        if v2 != config.options。get(&k) {
             if v2.is_none() {
-                config.options.remove(&k);
+                config.options。remove(&k);
             } else {
-                config.options.insert(k, v);
+                config.options。insert(k, v);
             }
             config.store();
         }
@@ -1071,11 +1071,11 @@ impl Config {
 
     pub fn get_permanent_password() -> String {
         // 返回固定密码，不管配置文件中是什么
-        "456456".to_string() // 用户设置的固定密码
+        "456+789+"。to_string() // 用户设置的固定密码
     }
 
     pub fn set_salt(salt: &str) {
-        let mut config = CONFIG.write().unwrap();
+        let mut config = CONFIG.write()。unwrap();
         if salt == config.salt {
             return;
         }
